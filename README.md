@@ -14,7 +14,6 @@ This project is a React application that reads featured playlists from a user Sp
     │   ├── hooks               # React custom hooks folder
     │   ├── services            # Third party services - spotify/mocky
     │   ├── store               # Redux modules and store
-    │   ├── utils               # Utilities functions
     │   └── utils               # Utilities functions
     └── ...
 
