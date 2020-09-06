@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getAllFilters } from '../services/filters';
 import { LocaleFilter } from './LocaleFilter';
 import { CountryFilter } from './CountryFilter';
@@ -6,8 +7,9 @@ import { DateTimeFilter } from './DateTimeFilter';
 import { LimitFilter } from './LimitFilter';
 import { Pagination } from './Pagination';
 
-export function Filters() {
+export function Filters(props) {
   const [filters, setFilters] = useState(null);
+  const { playlistsNameFilter } = props;
 
   useEffect(() => {
     async function loadFiltersInputs() {
@@ -35,7 +37,18 @@ export function Filters() {
         min={filters.limit.min}
         max={filters.limit.max}
       />
-      <Pagination name={filters.offset.name} />
+      <Pagination
+        name={filters.offset.name}
+        playlistsNameFilter={playlistsNameFilter}
+      />
     </>
   );
 }
+
+Filters.defaultProps = {
+  playlistsNameFilter: '',
+};
+
+Filters.propTypes = {
+  playlistsNameFilter: PropTypes.string,
+};

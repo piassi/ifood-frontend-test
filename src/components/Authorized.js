@@ -25,7 +25,7 @@ export function Authorized() {
           handleOnChange={setPlaylistsNameFilter}
           value={playlistsNameFilter}
         />
-        <Filters />
+        <Filters playlistsNameFilter={playlistsNameFilter} />
       </Col>
 
       <Col md={9}>

@@ -7,7 +7,7 @@ import { setOffsetFilter } from '../store/modules/filters/actions';
 import { getPlaylistsTotal } from '../store/modules/playlists/selectors';
 
 export function Pagination(props) {
-  const { name } = props;
+  const { name, playlistsNameFilter } = props;
   const limit = useSelector(getFilterByName('limit'));
   const total = useSelector(getPlaylistsTotal);
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export function Pagination(props) {
   const numberOfPages = Math.ceil(total / limit);
   const pagination = [];
 
-  if (numberOfPages <= 1) {
+  if (numberOfPages <= 1 || playlistsNameFilter) {
     return '';
   }
 
@@ -44,6 +44,11 @@ export function Pagination(props) {
   );
 }
 
+Pagination.defaultProps = {
+  playlistsNameFilter: '',
+};
+
 Pagination.propTypes = {
   name: PropTypes.string.isRequired,
+  playlistsNameFilter: PropTypes.string,
 };
