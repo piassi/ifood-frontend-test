@@ -7,16 +7,18 @@ import { getPlaylistsItems } from '../store/modules/playlists/selectors';
 import { loadPlaylists } from '../store/modules/playlists/actions';
 import { getAllFilters } from '../store/modules/filters/selectors';
 import { PlaylistCard } from './PlaylistCard';
+import useRefreshData from '../hooks/useRefreshData';
 
 export function Authorized() {
   const dispatch = useDispatch();
   const [playlistsNameFilter, setPlaylistsNameFilter] = useState('');
   const playlists = useSelector(getPlaylistsItems(playlistsNameFilter));
   const filters = useSelector(getAllFilters);
+  const refreshData = useRefreshData(30000);
 
   useEffect(() => {
     dispatch(loadPlaylists(filters));
-  }, [dispatch, filters]);
+  }, [dispatch, filters, refreshData]);
 
   return (
     <Row>
