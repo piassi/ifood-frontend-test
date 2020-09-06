@@ -1,13 +1,13 @@
 import axios from 'axios';
 import moment from 'moment';
-import { getArgFromUrl } from '../utils/getArgFromUrl';
+import { getAccessToken } from '../utils/token';
 
 const spotifyApi = axios.create({
   baseURL: 'https://api.spotify.com/v1/',
 });
 
 function getAuthToken() {
-  const accessToken = getArgFromUrl('access_token');
+  const accessToken = getAccessToken();
   return `Bearer ${accessToken}`;
 }
 
